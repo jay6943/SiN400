@@ -1,14 +1,14 @@
 {
   "terminal.integrated.env.windows": {
-    "PYTHONPATH": "../pic;../SiN"
+    "PYTHONPATH": "../pic"
   },
   "terminal.integrated.env.linux": {
-    "PYTHONPATH": "../pic;../SiN"
+    "PYTHONPATH": "../pic"
   },
   "terminal.integrated.env.osx": {
-    "PYTHONPATH": "../pic;../SiN"
+    "PYTHONPATH": "../pic"
   },
   "python.analysis.extraPaths": [
-    "../pic;../SiN"
+    "../pic"
   ]
 }
