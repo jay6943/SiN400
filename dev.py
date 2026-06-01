@@ -90,16 +90,16 @@ def circular(wg, radius, angle):
 
 
 def savedxf(filename):
-  dxf.saveas(f'{cfg.work}/{filename}')
+  dxf.saveas(f'{cfg.path}/{filename}')
 
 
 def saveas(filename):
-  gds.saveas(f'{cfg.work}/{filename}', cfg.labels)
+  gds.saveas(f'{cfg.path}/{filename}', cfg.labels)
 
 
 def dlayers(filename, label1, label2):
-  gds.dlayers(f'{cfg.work}/{filename}', cfg.labels, label1, label2)
+  gds.dlayers(f'{cfg.path}/{filename}', cfg.labels, label1, label2)
 
 
 def gdstext(filename):
-  gds.texts(f'{cfg.work}/{filename}', cfg.labels, 11000, 0)
+  gds.texts(f'{cfg.path}/{filename}', cfg.labels, 11000, 0)

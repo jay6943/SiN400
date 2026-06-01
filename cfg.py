@@ -2,10 +2,7 @@ import os
 
 ver = '1.0'
 path = f'../../mask/SiN400-{ver}'
-work = f'{path}/layouts'
 if not os.path.isdir(path): os.mkdir(path)
-if not os.path.isdir(work): os.mkdir(work)
-
 draft = 'draft'
 
 dw = 0.1

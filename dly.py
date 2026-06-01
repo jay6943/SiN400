@@ -126,7 +126,6 @@ def dlmzi(x, y):
   x5, y5 = dxf.move(idev, x2, y3, x4, y4, x2 - x4, 0, 0)
   x7, y7 = dev.sline(x6, y3, x5 - x6 + x2 - x4)
   x8 = x6 + (x7 - x6 - cfg.lpad) * 0.5
-  # pad.bends(x8, y3, -1)
   pad.electrode('metal', x8, y3, cfg.lpad, 6, -1)
   pad.electrode('edge', x8, y3, cfg.lpad, cfg.eg, -1)
 
