@@ -15,6 +15,7 @@ def icr(xpos, ypos):
   x, y = key.frame(xpos, ypos, 1)
   x, y = dev.filled(x, y, 0)
   rx.chips(x, y + cfg.size * 0.5)
+  dev.split('metal', 0, -1)
 
 
 def polarization(xpos, ypos):
@@ -51,19 +52,6 @@ def grating(xpos, ypos):
   fgc.chips(x, y + cfg.sch * 2)
 
 
-def metal(xpos, ypos):
-  key.frame(xpos, ypos, 2)
-  dev.split('metal', 1, -1)
-
-
-def mark(xpos, ypos):
-  x, y = key.frame(xpos, ypos, 2)
-  dev.marks('metal', x, y, cfg.size, cfg.size)
-  title = f'SiN Silicon Photonics'
-  dev.texts(x + cfg.size * 0.5, y + 20, title, 0.5, 'cb')
-  dev.texts(x + cfg.size * 0.5, y + cfg.size - 20, title, 0.5, 'ct')
-
-
 def chips(region):
   if 0 in region: key.cross(0, 0)
   # if 1 in region: icr(-1, 1)
@@ -71,12 +59,11 @@ def chips(region):
   # if 3 in region: hybrid(-1, -1)
   # if 4 in region: metal(1, -1)
   if 1 in region: waveguide(-1, 1)
-  if 4 in region: mark(1, -1)
 
 
 if __name__ == '__main__':
   cfg.draft = 'draft'
-  filename = f'SiN_V{cfg.ver}_{cfg.draft}'
+  filename = f'SiN400_V{cfg.ver}_{cfg.draft}'
   chips([0, 1, 2, 3, 4])
   # dev.savedxf(filename)
   dev.saveas(filename)
