@@ -3,6 +3,8 @@ import dxf
 import gds
 import dev
 import fgc
+import time
+import datetime as dt
 
 
 def bends(path):
@@ -51,10 +53,29 @@ def grating_coupler(path):
   gds.savelayer(f'{path}/grating_{cfg.period}_{cfg.duty}')
 
 
+def check_process(file_path):
+  target_word = 'Simulation completed successfully'
+  check_completed = True
+  while check_completed:
+    current_time = dt.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    try:
+      with open(f'{file_path}.log', 'r', encoding='utf-8') as file:
+        for line in file:
+          if target_word in line:
+            print(f'{current_time}, {target_word}')
+            check_completed = False
+    except FileNotFoundError:
+      print(f'{current_time}, not completed ...')
+      check_completed = True
+    time.sleep(1)
+
+
 if __name__ == '__main__':
   cfg.draft = 'mask'
   workspace = '../../ansys'
   # bends(f'{workspace}/euler')
   # ubend(f'{workspace}/euler')
   # sbend(f'{workspace}/euler')
-  grating_coupler(f'{workspace}/Grating coupler/SiN-2.6')
+  # grating_coupler(f'{workspace}/Grating coupler/SiN-2.6')
+  check_process('D:/ansys/wg/wg_2w_0.15t_TE_p0')
+
