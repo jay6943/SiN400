@@ -34,8 +34,8 @@ wpad = 10
 ldci = 22.3
 sdci = 1.9
 
-duty = 0.5
-period = 1.2
+duty = 0.3
+period = 1.1
 
 size = 10000
 wkey = 400
