@@ -35,7 +35,7 @@ ldci = 22.3
 sdci = 1.9
 
 duty = 0.5
-period = 1.0
+period = 1.4
 
 size = 10000
 wkey = 400

@@ -48,7 +48,7 @@ def dc(path):
 def grating_coupler(path):
   fgc.grating('core', 0, 0, 1, 0)
   dxf.srect('core', -10, 0, 10, cfg.wg - cfg.dw)
-  gds.savelayer(f'{path}/grating_{cfg.period}_{cfg.duty}')
+  gds.savelayer(f'{path}/grating_{cfg.period}')
 
 
 if __name__ == '__main__':
