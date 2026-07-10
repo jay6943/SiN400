@@ -1,6 +1,6 @@
 import os
 
-ver = '1.0'
+ver = '1.1'
 path = f'../../mask/SiN400-{ver}'
 if not os.path.isdir(path): os.mkdir(path)
 draft = 'draft'
