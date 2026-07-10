@@ -4,7 +4,7 @@ import dev
 
 
 def device(x, y, sign):
-  w = [cfg.wg, cfg.wtip + cfg.dw]
+  w = [cfg.wg, cfg.wtip]
   l = [cfg.ltip - cfg.lext, cfg.lext]
 
   x1, _ = dxf.taper('core', x, y, sign * l[0], w[0], w[1])

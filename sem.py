@@ -12,8 +12,8 @@ def wgs(x, y, align):
 
 def pbses(x, y, align):
   sign = 1 if 'l' in align[0] else -1
-  dxf.srect('core', x, y + cfg.s2x2, sign * cfg.lext, 1.2 + cfg.dw)
-  dxf.srect('core', x, y - cfg.s2x2, sign * cfg.lext, 1.85 + cfg.dw)
+  dxf.srect('core', x, y + cfg.s2x2, sign * cfg.lext, 1.2)
+  dxf.srect('core', x, y - cfg.s2x2, sign * cfg.lext, 1.85)
   x1, _ = dxf.srect('edge', x, y, sign * cfg.lext, cfg.eg)
   dev.texts(x1, y, 'PBS', 0.3, align)
 
@@ -30,7 +30,7 @@ def tips(x, y, align):
   sign = 1 if 'l' in align[0] else -1
   for w in [0.2, 0.3, 0.4]:
     title = f'TIP {w}'
-    dxf.srect('core', x, y, sign * cfg.lext, w + cfg.dw)
+    dxf.srect('core', x, y, sign * cfg.lext, w)
     x1, _ = dxf.srect('edge', x, y, sign * cfg.lext, cfg.eg)
     dev.texts(x1, y, title, 0.3, align)
     y += cfg.sch

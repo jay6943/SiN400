@@ -7,7 +7,7 @@ import tip
 
 def arm(layer, x, y, sign):
   ltaper = 10
-  wg = 1.2 + cfg.dw if sign > 0 else cfg.wpbs
+  wg = 1.2 if sign > 0 else cfg.wpbs
 
   x1, y1 = dxf.taper(layer, x, y, cfg.ltpr, cfg.wtpr, cfg.wg)
   x2, y2 = dxf.srect(layer, x1, y1, 10, cfg.wg)
