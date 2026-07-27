@@ -5,6 +5,21 @@ import dev
 import tip
 
 
+def polarizer(x, y, sign):
+  radius = cfg.radius
+  cfg.radius, angle = 50, 45
+  idev = len(ref.points)
+  x1, y1 = x, y
+  for _ in range(20):
+    x2, y2 = dev.sbend(x1, y1, angle,  sign * cfg.ch)
+    x1, y1 = dev.sbend(x2, y2, angle, -sign * cfg.ch)
+  x3, x4 = dxf.center(idev, x, x1, cfg.size)
+  tip.texts(x3, y, x, '100R')
+  tip.texts(x4, y, x + cfg.size, 'Polarizer')
+  cfg.radius = radius
+  return x, y + cfg.ch
+
+
 def arm(layer, x, y, sign):
   ltaper = 10
   wg = 1.2 if sign > 0 else cfg.wpbs
@@ -58,7 +73,7 @@ def mzi(layer, x, y, inport, outport):
 
 
 def device(layer, x, y):
-  ch = cfg.sch * 0.5
+  ch = cfg.ch * 0.5
 
   x3, y31, y32 = mzi(layer, x, y + cfg.s2x2, -1, 0)
   x4, y41 = dev.sbend(x3, y31, 20,  ch)
@@ -76,26 +91,26 @@ def chip(x, y, lchip):
 
   title = f'PBS-{cfg.lpbs:.0f}'
   tip.texts(x5, y, x, title)
-  tip.texts(x6, y + cfg.sch * 0.5, x + lchip, title)
-  tip.sline(x6, y - cfg.sch * 0.5, x + lchip)
+  tip.texts(x6, y + cfg.ch * 0.5, x + lchip, title)
+  tip.sline(x6, y - cfg.ch * 0.5, x + lchip)
   print(title)
 
   return x + lchip, y
 
 
-def chips(x, y):
-  y += cfg.sch * 1.5
+def chips(x, y, ranges):
+  y += cfg.ch * 1.5
   lpbs = cfg.lpbs
-  for cfg.lpbs in dxf.arange(44, 66, 1):
+  for cfg.lpbs in ranges:
     _, y = chip(x, y, cfg.size)
-    y += cfg.sch * 2
+    y += cfg.ch * 2
   cfg.lpbs = lpbs
 
-  return x + cfg.size, y - cfg.sch * 0.5
+  return x + cfg.size, y - cfg.ch * 0.5
 
 
 if __name__ == '__main__':
   filename = 'pbs'
-  chips(0, 0)
+  chips(0, 0, dxf.arange(44, 66, 1))
   dev.filled(0, 0, 1)
   dev.saveas(filename)

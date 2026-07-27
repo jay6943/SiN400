@@ -60,20 +60,20 @@ def chips(x, y):
   duty = cfg.duty
   period = cfg.period
   for cfg.duty in dxf.arange(0.41, 0.53, 0.03):
-    y += cfg.sch
+    y += cfg.ch
     tip.chip(x, y, cfg.size)
     for cfg.period in dxf.arange(0.8, 1.2, 0.05):
-      x1, y1 = x + cfg.size - cfg.ltip, y + cfg.sch
+      x1, y1 = x + cfg.size - cfg.ltip, y + cfg.ch
       tip.sline(x1, y1, x)
       chip(x1, y1, 1)
       dx = cfg.size * 0.5
       for sign in [1, -1]:
-        x1, y1 = dev.sline(x + dx, y + cfg.sch * 2, sign * (dx - cfg.ltip))
+        x1, y1 = dev.sline(x + dx, y + cfg.ch * 2, sign * (dx - cfg.ltip))
         x2, y2 = chip(x1, y1, sign)
         align = 'lc' if sign > 0 else 'rc'
         title = f'{cfg.period}-{cfg.duty*100:.0f}'
         dev.texts(x2 + sign * 10, y2, title, 0.4, align)
-      y += cfg.sch * 2
+      y += cfg.ch * 2
       print(f'Grating period = {cfg.period} um')
   cfg.period = period
   cfg.duty = duty

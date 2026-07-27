@@ -90,16 +90,20 @@ def circular(wg, radius, angle):
 
 
 def savedxf(filename):
+  print(f'Saving ... {filename}.dxf')
   dxf.saveas(f'{cfg.path}/{filename}')
 
 
 def saveas(filename):
+  print(f'Saving ... {filename}.gds')
   gds.saveas(f'{cfg.path}/{filename}', cfg.labels)
 
 
 def dlayers(filename, label1, label2):
+  print(f'Writing a difference(#{label1} - #{label2}) on #{label2}')
   gds.dlayers(f'{cfg.path}/{filename}', cfg.labels, label1, label2)
 
 
 def gdstext(filename):
+  print('Inserting text')
   gds.texts(f'{cfg.path}/{filename}', cfg.labels, 11000, 0)

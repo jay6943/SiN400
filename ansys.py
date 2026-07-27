@@ -48,7 +48,4 @@ def grating_coupler(path):
 if __name__ == '__main__':
   cfg.draft = 'mask'
   workspace = '../../ansys'
-  # bends(f'{workspace}/euler')
-  # ubend(f'{workspace}/euler')
-  # sbend(f'{workspace}/euler')
   grating_coupler(f'{workspace}/Grating coupler/SiN-2.6')

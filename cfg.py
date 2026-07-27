@@ -1,37 +1,35 @@
 import os
 
-ver = '1.1'
+ver = '1.0'
 path = f'../../mask/SiN400-{ver}'
 if not os.path.isdir(path): os.mkdir(path)
 draft = 'draft'
 
 wg = 0.8
-eg = 40
-ch = 250
-sch = 100
-radius = 150
-angle = 6
+eg = 40.0
+ch = 100.0
+radius = 150.0
+angle = 6.0
 
 w1x2 = 5.6
-l1x2 = 18.3
+l1x2 = 18.0
 s1x2 = 1.5
 w2x2 = 8.4
-l2x2 = 52.5
+l2x2 = 52.0
 s2x2 = 1.46
-w4x4 = 12
-l4x4 = 581
+w4x4 = 12.0
+l4x4 = 581.0
 s4x4 = 1.5
-lpbs = 56
+lpbs = 56.0
 wpbs = 1.85
-ltpr = 5
+ltpr = 5.0
 wtpr = 2.0
-ltip = 600
-lext = 500
+ltip = 600.0
+lext = 500.0
 wtip = 0.3
-lpad = 400
-wpad = 10
-ldci = 22.3
-sdci = 1.9
+lpad = 400.0
+wpad = 10.0
+stap = 1.9
 
 duty = 0.5
 period = 1.4

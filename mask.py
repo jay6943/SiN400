@@ -1,13 +1,44 @@
 import cfg
+import dxf
 import dev
 import key
 import pbs
 import tip
+import tap
 import fgc
-import ohm
-import dly
 import y4x4
 import rx
+
+
+def polarization_beam_splitter(xpos, ypos):
+  x, y = key.frame(xpos, ypos, 1)
+  x, y = dev.filled(x, y, 0)
+  _, y = tip.refer(x, y + cfg.ch * 2)
+  _, y = pbs.polarizer(x, y + cfg.ch, 1)
+  _, y = pbs.chips(x, y, dxf.arange(12, 100, 2))
+  _, y = pbs.polarizer(x, y + cfg.ch, -1)
+  _, y = tip.refer(x, y)
+
+
+def hybrid(xpos, ypos):
+  x, y = key.frame(xpos, ypos, 1)
+  x, y = dev.filled(x, y, 0)
+  _, y = tip.refer(x, y + cfg.ch * 2)
+  _, y = pbs.polarizer(x, y + cfg.ch, 1)
+  _, y = y4x4.chips(x, y, dxf.arange(572, 589, 1))
+  _, y = pbs.polarizer(x, y, -1)
+  _, y = tip.refer(x, y)
+
+
+def waveguide(xpos, ypos):
+  x, y = key.frame(xpos, ypos, 1)
+  x, y = dev.filled(x, y, 0)
+  _, y = tip.refer(x, y + cfg.ch * 2)
+  _, y = pbs.polarizer(x, y + cfg.ch, 1)
+  _, y = tip.chips(x, y, dxf.arange(0.2, 0.4, 0.02))
+  _, y = tap.chips(x, y, dxf.arange(1.5, 2.5, 0.1))
+  _, y = pbs.polarizer(x, y, -1)
+  _, y = tip.refer(x, y)
 
 
 def icr(xpos, ypos):
@@ -17,43 +48,16 @@ def icr(xpos, ypos):
   dev.split('metal', 0, -1)
 
 
-def polarization(xpos, ypos):
-  x, y = key.frame(xpos, ypos, 1)
-  x, y = dev.filled(x, y, 0)
-  _, y = tip.chip(x, y + cfg.sch * 3, cfg.size)
-  _, y = pbs.chips(x, y)
-  _, y = tip.chip(x, y, cfg.size)
-  _, y = pbs.chips(x, y)
-  _, y = tip.chip(x, y, cfg.size)
-
-
-def hybrid(xpos, ypos):
-  x, y = key.frame(xpos, ypos, 1)
-  x, y = dev.filled(x, y, 0)
-  _, y = tip.chips(x, y + cfg.sch)
-  _, y = y4x4.chips(x, y)
-
-
-def waveguide(xpos, ypos):
-  x, y = key.frame(xpos, ypos, 1)
-  x, y = dev.filled(x, y, 0)
-  _, y = tip.chip(x, y + cfg.sch * 2, cfg.size)
-  _, y = dly.chip(x, y + cfg.sch)
-  _, y = tip.chip(x, y + cfg.sch, cfg.size)
-  _, y = ohm.chips(x, y)
-  _, y = tip.chip(x, y, cfg.size)
-
-
 def grating(xpos, ypos):
   x, y = key.frame(xpos, ypos, 1)
   x, y = dev.filled(x, y, 0)
-  fgc.chips(x, y + cfg.sch * 2)
+  fgc.chips(x, y + cfg.ch * 2)
 
 
 def chips(region):
   if 0 in region: key.cross(0, 0)
   if 1 in region: waveguide(-1, 1)
-  if 2 in region: polarization(1, 1)
+  if 2 in region: polarization_beam_splitter(1, 1)
   if 3 in region: hybrid(-1, -1)
   if 4 in region: icr(-1, 1)
 

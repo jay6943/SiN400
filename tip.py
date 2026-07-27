@@ -23,11 +23,20 @@ def sline(x, y, xend):
   return x2, y
 
 
+def refer(x, y):
+  ch = cfg.ch * 0.5
+  title = 'ref'
+  chip(x, y, cfg.size)
+  dev.texts(x + cfg.ltip, y - ch, title, 0.3, 'rc')
+  dev.texts(x + cfg.size - cfg.ltip, y - ch, title, 0.3, 'lc')
+  return x, y
+
+
 def texts(x, y, xend, title):
   if xend > x: sign, align = 1, 'lc'
   else: sign, align = -1, 'rc'
   x1, _ = sline(x, y, xend)
-  dev.texts(x1 - sign * cfg.ltip, y - cfg.sch * 0.5, title, 0.3, align)
+  dev.texts(x1 - sign * cfg.ltip, y - cfg.ch * 0.5, title, 0.3, align)
   return x1, y
 
 
@@ -39,19 +48,19 @@ def chip(x, y, lchip):
   return x + lchip, y
 
 
-def chips(x, y):
-  y += cfg.sch
+def chips(x, y, ranges):
+  y += cfg.ch
   wtip = cfg.wtip
-  for cfg.wtip in dxf.arange(0.2, 0.4, 0.02):
+  for cfg.wtip in ranges:
     chip(x, y, cfg.size)
     title = f'TIP-{cfg.wtip:.2f}'
-    dev.texts(x + cfg.ltip, y - cfg.sch * 0.5, title, 0.3, 'rc')
-    dev.texts(x + cfg.size - cfg.ltip, y - cfg.sch * 0.5, title, 0.3, 'lc')
-    y += cfg.sch
+    dev.texts(x + cfg.ltip, y - cfg.ch * 0.5, title, 0.3, 'rc')
+    dev.texts(x + cfg.size - cfg.ltip, y - cfg.ch * 0.5, title, 0.3, 'lc')
+    y += cfg.ch
   cfg.wtip = wtip
   return x + cfg.size, y
 
 
 if __name__ == '__main__':
-  chips(0, 0)
+  chips(0, 0, dxf.arange(0.2, 0.4, 0.02))
   dev.saveas('tip')

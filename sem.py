@@ -33,17 +33,17 @@ def tips(x, y, align):
     dxf.srect('core', x, y, sign * cfg.lext, w)
     x1, _ = dxf.srect('edge', x, y, sign * cfg.lext, cfg.eg)
     dev.texts(x1, y, title, 0.3, align)
-    y += cfg.sch
+    y += cfg.ch
 
 
 def chips(x, y):
   for i, align in enumerate(['lc', 'rc']):
     wgs(x + cfg.size * i, y, align)
-    pbses(x + cfg.size * i, y + cfg.sch, align)
-    couplers(x + cfg.size * i, y + cfg.sch * 2, align)
-    tips(x + cfg.size * i, y + cfg.sch * 3, align)
+    pbses(x + cfg.size * i, y + cfg.ch, align)
+    couplers(x + cfg.size * i, y + cfg.ch * 2, align)
+    tips(x + cfg.size * i, y + cfg.ch * 3, align)
 
-  return x, y + cfg.sch * 9
+  return x, y + cfg.ch * 9
 
 
 if __name__ == '__main__':

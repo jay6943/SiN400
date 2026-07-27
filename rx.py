@@ -55,8 +55,8 @@ def chip(x, y, xsize, ysize):
   x3, y33, y34 = pbs.device('core', x1, y2)
 
   x41, y41 = dev.sbend(x3, y31, 90, y + dy + ch - y31)
-  x42, y42 = tbend(x3, y32, 1, -1, ch - cfg.sch * 0.5)
-  x43, y43 = tbend(x3, y33, 1,  1, ch - cfg.sch * 0.5)
+  x42, y42 = tbend(x3, y32, 1, -1, ch - cfg.ch * 0.5)
+  x43, y43 = tbend(x3, y33, 1,  1, ch - cfg.ch * 0.5)
   x44, y44 = dev.sbend(x3, y34, 90, y - dy - ch - y34)
 
   _, y52 = dev.tline(x42, y42, y - dy + ch - y42 + df.dy)
