@@ -1,5 +1,5 @@
 import cfg
-import ref
+import dat
 import dxf
 import dev
 import tip
@@ -8,7 +8,7 @@ import tip
 def polarizer(x, y, sign):
   radius = cfg.radius
   cfg.radius, angle = 50, 45
-  idev = len(ref.points)
+  idev = len(dat.points)
   x1, y1 = x, y
   for _ in range(20):
     x2, y2 = dev.sbend(x1, y1, angle,  sign * cfg.ch)
@@ -72,37 +72,35 @@ def mzi(layer, x, y, inport, outport):
   return x7, y1, y2
 
 
-def device(layer, x, y):
-  ch = cfg.ch * 0.5
+def device(layer, x, y, angle, ch):
+  x1, y11, y12 = mzi(layer, x, y + cfg.s2x2, -1, 0)
+  x2, y21 = dev.sbend(x1, y11, angle,  ch)
+  x2, y22 = dev.sbend(x1, y12, angle, -ch)
+  x3, _, y31 = mzi(layer, x2, y21 - cfg.s2x2, 1,  1)
+  x3, y32, _ = mzi(layer, x2, y22 - cfg.s2x2, 1, -1)
 
-  x3, y31, y32 = mzi(layer, x, y + cfg.s2x2, -1, 0)
-  x4, y41 = dev.sbend(x3, y31, 20,  ch)
-  x4, y42 = dev.sbend(x3, y32, 20, -ch)
-  x5, _, y51 = mzi(layer, x4, y41 - cfg.s2x2, 1,  1)
-  x5, y52, _ = mzi(layer, x4, y42 - cfg.s2x2, 1, -1)
-
-  return x5, y51, y52
+  return x3, y31, y32
 
 
-def chip(x, y, lchip):
-  idev = len(ref.points)
-  x1, _, _ = device('core', x, y)
-  x5, x6 = dxf.center(idev, x, x1, lchip)
+def chip(x, y, angle, ch):
+  idev = len(dat.points)
+  x1, _, _ = device('core', x, y, angle, ch)
+  x5, x6 = dxf.center(idev, x, x1, cfg.size)
 
   title = f'PBS-{cfg.lpbs:.0f}'
   tip.texts(x5, y, x, title)
-  tip.texts(x6, y + cfg.ch * 0.5, x + lchip, title)
-  tip.sline(x6, y - cfg.ch * 0.5, x + lchip)
+  tip.texts(x6, y + cfg.ch * 0.5, x + cfg.size, title)
+  tip.sline(x6, y - cfg.ch * 0.5, x + cfg.size)
   print(title)
 
-  return x + lchip, y
+  return x + cfg.size, y
 
 
 def chips(x, y, ranges):
   y += cfg.ch * 1.5
   lpbs = cfg.lpbs
   for cfg.lpbs in ranges:
-    _, y = chip(x, y, cfg.size)
+    _, y = chip(x, y, 20, cfg.ch * 0.5)
     y += cfg.ch * 2
   cfg.lpbs = lpbs
 

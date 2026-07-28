@@ -1,5 +1,5 @@
 import cfg
-import ref
+import dat
 import dxf
 import dev
 import pbs
@@ -13,7 +13,7 @@ def tap(x, y, dy):
   dev.bends(x, y, 90, 0, -1, -1)
   x1, y1 = dev.bends(x, y, 90, 0, 1, -1)
   x2, y2 = dev.tline(x1, y1, df.dy - dy + cfg.ltip)
-  idev = len(ref.points)
+  idev = len(dat.points)
   x3, y3 = tip.sline(x2, y2, x2)
   dxf.move(idev, x2, y2, x3, y3, 0, 0, 90)
 
@@ -46,13 +46,14 @@ def chip(x, y, xsize, ysize):
   dy = 2400
   ch = cfg.ch * 0.5
   df = dev.euler(cfg.wg, cfg.radius, 90)
+  l4x4 = cfg.l4x4
 
   x1, y1 = att(x + cfg.ltip, y + ch, df)
   x1, y2 = dev.sline(x + cfg.ltip, y - ch, x1 - x - cfg.ltip)
-  tap(x + 4000, y1 - cfg.sdci, ysize + 150)
+  tap(x + 4000, y1 - cfg.stap, ysize + 150)
 
-  x3, y31, y32 = pbs.device('core', x1, y1)
-  x3, y33, y34 = pbs.device('core', x1, y2)
+  x3, y31, y32 = pbs.device('core', x1, y1, 45, cfg.ch)
+  x3, y33, y34 = pbs.device('core', x1, y2, 45, cfg.ch)
 
   x41, y41 = dev.sbend(x3, y31, 90, y + dy + ch - y31)
   x42, y42 = tbend(x3, y32, 1, -1, ch - cfg.ch * 0.5)
@@ -68,9 +69,9 @@ def chip(x, y, xsize, ysize):
   dev.sline(x41, y41, x5 - x41)
   dev.sline(x44, y44, x5 - x44)
 
-  cfg.l4x4 = 578
+  cfg.l4x4 = l4x4
   x11, y11 = y4x4.device(x5, y + dy, cfg.ch)
-  cfg.l4x4 = 584
+  cfg.l4x4 = l4x4 + 2
   x12, y12 = y4x4.device(x5, y - dy, cfg.ch)
 
   tip.sline(x + cfg.ltip, y1, x)
@@ -79,30 +80,36 @@ def chip(x, y, xsize, ysize):
     x13, _ = tip.sline(x11, y11 + i * ch, x + xsize)
     x13, _ = tip.sline(x12, y12 + i * ch, x + xsize)
 
+  cfg.l4x4 = l4x4
   print(f'RX; {int(x11 - x1)} {int(x13 - x)}')
 
   return x + xsize, y
 
 
 def chips(x, y):
+  ch, l4x4 = cfg.ch, cfg.l4x4
+  cfg.ch = 250
+
   xsize = cfg.size
   ysize = 3100
 
   chip(x, y, xsize, ysize)
 
   x1, y1, y2 = x + 4500, ysize + 1550, ysize + 875
-  pbs.chip(x, y + y1, xsize)
-  cfg.l4x4 = 578
+  pbs.chip(x, y + y1, 30, cfg.ch * 0.5)
+  cfg.l4x4 = l4x4
   y4x4.chip(x, y + y2, xsize, cfg.ch)
-  dev.texts(x1, y + y2 - 150, f'TE {cfg.l4x4}', 0.5, 'lc')
+  dev.texts(x1, y + y2 - 150, f'TE {cfg.l4x4:.0f}', 0.5, 'lc')
   tip.chip(x, y + ysize + cfg.ch, xsize)
   tip.chip(x, y - ysize - cfg.ch, xsize)
-  cfg.l4x4 = 584
+  cfg.l4x4 = l4x4 + 2
   y4x4.chip(x, y - y2, xsize, cfg.ch)
-  dev.texts(x1, y - y2 - 150, f'TM {cfg.l4x4}', 0.5, 'lc')
-  pbs.chip(x, y - y1, xsize)
+  dev.texts(x1, y - y2 - 150, f'TM {cfg.l4x4:.0f}', 0.5, 'lc')
+  pbs.chip(x, y - y1, 30, cfg.ch * 0.5)
 
   dev.marks('metal', x, y - ysize, xsize, ysize * 2)
+
+  cfg.ch, cfg.l4x4 = ch, l4x4
 
 
 if __name__ == '__main__':

@@ -1,4 +1,4 @@
-import ref
+import dat
 import dxf
 import cfg
 import dev
@@ -25,7 +25,7 @@ def device(x, y, radius):
 
 
 def chip(x, y, lchip, radius):
-  idev = len(ref.points)
+  idev = len(dat.points)
   x2, y2 = device(x, y, radius)
   x5, x6 = dxf.center(idev, x, x2, lchip)
 

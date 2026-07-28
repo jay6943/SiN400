@@ -1,5 +1,5 @@
 import cfg
-import ref
+import dat
 import dxf
 import dev
 
@@ -86,7 +86,7 @@ def key2(layer, x, y, align):
 
     t = t + (i - 1) * 4.5 + 20
 
-    idev = len(ref.points)
+    idev = len(dat.points)
     dxf.texts(layer, xp, yp, str(w), 0.05, 'lb')
     dxf.move(idev, xp, yp, 0, 0, t, -10, 90)
 
@@ -133,11 +133,11 @@ def frame(xpos, ypos, align):
   dxf.srect('keys', x + x6 + 100, y + y6 + 50, 5, 80)
   dxf.srect('keys', x + x6 + 150, y + y6 + 50, 1, 80)
 
-  idev = len(ref.points)
+  idev = len(dat.points)
   key1('bars', x, y, 1)
   dxf.move(idev, x, y, 0, 0, 0, align * 1100 + 800, 270)
 
-  idev = len(ref.points)
+  idev = len(dat.points)
   key2('keys', x, y, align)
   dxf.move(idev, x, y, 0, 0, 400, 0, 90)
 

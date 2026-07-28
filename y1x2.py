@@ -1,5 +1,5 @@
 import cfg
-import ref
+import dat
 import dxf
 import dev
 import tip
@@ -29,7 +29,7 @@ def chip(x, y, lchip):
   x9, angle, dy = x, 5, 5
   core = dev.euler(cfg.wg, cfg.radius, angle)
 
-  idev = len(ref.points)
+  idev = len(dat.points)
   for i in range(10):
     x1, y1, y2 = device(x9, y, 1)
     x2, y1 = dxf.sbend('core', core, x1, y1, dy)

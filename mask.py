@@ -25,7 +25,7 @@ def hybrid(xpos, ypos):
   x, y = dev.filled(x, y, 0)
   _, y = tip.refer(x, y + cfg.ch * 2)
   _, y = pbs.polarizer(x, y + cfg.ch, 1)
-  _, y = y4x4.chips(x, y, dxf.arange(572, 589, 1))
+  _, y = y4x4.chips(x, y, dxf.arange(150, 167, 1))
   _, y = pbs.polarizer(x, y, -1)
   _, y = tip.refer(x, y)
 
@@ -35,8 +35,9 @@ def waveguide(xpos, ypos):
   x, y = dev.filled(x, y, 0)
   _, y = tip.refer(x, y + cfg.ch * 2)
   _, y = pbs.polarizer(x, y + cfg.ch, 1)
-  _, y = tip.chips(x, y, dxf.arange(0.2, 0.4, 0.02))
-  _, y = tap.chips(x, y, dxf.arange(1.5, 2.5, 0.1))
+  _, y = tip.chips(x, y, dxf.arange(0.2, 0.4, 0.01))
+  _, y = tap.chips(x, y, dxf.arange(1.2, 2.6, 0.1))
+  _, y = fgc.chips(x, y)
   _, y = pbs.polarizer(x, y, -1)
   _, y = tip.refer(x, y)
 
@@ -65,7 +66,7 @@ def chips(region):
 if __name__ == '__main__':
   cfg.draft = 'draft'
   filename = f'SiN400_V{cfg.ver}_{cfg.draft}'
-  chips([0, 1])
+  chips([0, 1, 2, 3])
   # dev.savedxf(filename)
   dev.saveas(filename)
   dev.dlayers(filename, 'rect', 'edge')

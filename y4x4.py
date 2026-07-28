@@ -1,5 +1,5 @@
 import cfg
-import ref
+import dat
 import dxf
 import dev
 import tip
@@ -70,19 +70,21 @@ def device(x, y, ch):
 
 
 def chip(x, y, lchip, ych):
-  idev = len(ref.points)
+  idev = len(dat.points)
   x1, _ = device(x, y, ych)
-  x5, x6 = dxf.center(idev, x, x1, lchip)
+  x2, x3 = dxf.center(idev, x, x1, lchip)
 
   title = f'4x4-{cfg.l4x4:.0f}'
-  tip.sline(x5, y + cfg.ch * 0.5, x)
-  tip.sline(x5, y - cfg.ch * 0.5, x)
+  tip.sline(x2, y + cfg.ch * 0.5, x)
+  tip.sline(x2, y - cfg.ch * 0.5, x)
   dev.texts(x + cfg.lext, y, title, 0.3, 'rc')
 
   for i in [3, 1, -1, -3]:
     title = f'{cfg.l4x4:.0f}-{2+(i+1)*0.5:.0f}'
-    tip.texts(x6, y + ych * 0.5 * i, x + lchip, title)
-  print(f'{title}, {x6 - x5:.0f}')
+    x4, y4 = x + lchip - cfg.lext, y + ych * 0.5 * i
+    tip.sline(x3, y4, x + lchip)
+    dev.texts(x4, y4 - ych * 0.5, title, 0.3, 'lc')
+  print(f'{title}, {x3 - x2:.0f}')
 
   return x + lchip, y
 
@@ -103,5 +105,5 @@ def chips(x, y, ranges):
 
 if __name__ == '__main__':
   chip(0, 0, cfg.size, cfg.ch * 0.5)
-  # chips(0, 0, dxf.arange(573, 589, 1))
+  # chips(0, 0, dxf.arange(150, 167, 1))
   dev.saveas('4x4')

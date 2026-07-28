@@ -1,5 +1,5 @@
 import cfg
-import ref
+import dat
 import dxf
 import dev
 import tip
@@ -13,7 +13,7 @@ def device(x, y, angle):
 
 
 def chip(x, y, lchip):
-  idev = len(ref.points)
+  idev = len(dat.points)
   x1, _ = device(x, y, 30)
   x2, _ = dev.sline(x, y, x1 - x)
   x3, x4 = dxf.center(idev, x, x2, lchip)
@@ -33,7 +33,7 @@ def chips(x, y, ranges):
   for cfg.stap in ranges:
     _, y = chip(x, y + cfg.ch * 2, cfg.size)
   cfg.stap = stap
-  return x, y + cfg.ch * 3
+  return x, y + cfg.ch
 
 
 if __name__ == '__main__':

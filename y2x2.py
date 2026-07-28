@@ -1,5 +1,5 @@
 import cfg
-import ref
+import dat
 import dxf
 import dev
 import tip
@@ -29,7 +29,7 @@ def chip(x, y, lchip):
   y1 = y + ch * 2
   y2 = y - ch * 2
   
-  idev = len(ref.points)
+  idev = len(dat.points)
   x1, y3 = dev.sbend(x, y1, 15, -dh)
   x1, y4 = dev.sbend(x, y2, 15,  dh)
   for i in range(1):
