@@ -80,10 +80,10 @@ def chip2x2(x, y, dx, lchip):
 def chips(x, y):
   lpad = cfg.lpad
   for cfg.lpad in [200, 400, 600]:
-    _, y = chip(x, y + cfg.ch * 2, cfg.lpad * 10, cfg.size)
+    _, y = chip(x, y + cfg.ch * 2, cfg.lpad * 10, cfg.lchip)
   cfg.lpad = lpad
 
-  return x + cfg.size, y + cfg.ch * 2
+  return x + cfg.lchip, y + cfg.ch * 2
 
 
 if __name__ == '__main__':

@@ -28,7 +28,7 @@ def bars(x, y):
 def triangle(x, y):
   dx, dy = 30, 10
   dl = dx * 2
-  ds = cfg.size - dy
+  ds = cfg.lsize - dy
   dxf.triangle('core', x + dx + dy, y + dy, dl, dl)
   dxf.triangle('core', x + dx + dy, y + ds, dl, -dl)
   dxf.triangle('core', x - dx + ds, y + dy, dl, dl)
@@ -167,8 +167,8 @@ def contact_align_key(layer, x, y, scale, sign):
 
 
 def contact_align_keys(layer, x, y, sign):
-  xo = x + cfg.size * 0.5
-  yo = y + cfg.size * 0.5
+  xo = x + cfg.lsize * 0.5
+  yo = y + cfg.lsize * 0.5
 
   for i in range(4):
     idev = len(cfg.points)
@@ -181,7 +181,7 @@ def contact_align_keys(layer, x, y, sign):
     
     dxf.move(idev, xo, yo, 0, 0, 0, 0, 90 * i)
   
-  dxf.srect(layer, x, yo - 1000, cfg.size, 5)
+  dxf.srect(layer, x, yo - 1000, cfg.lsize, 5)
 
   print('Contact Align Keys')
 

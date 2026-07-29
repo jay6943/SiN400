@@ -72,8 +72,8 @@ def marks(layer, x, y, xsize, ysize):
 
 
 def filled(x, y, sign):
-  dxf.crect('rect', x, y, x + cfg.size, y + cfg.size)
-  if sign: marks('edge', x, y, cfg.size, cfg.size)
+  dxf.crect('rect', x, y, x + cfg.lsize, y + cfg.lsize)
+  if sign: marks('edge', x, y, cfg.lsize, cfg.lsize)
   return x, y
 
 

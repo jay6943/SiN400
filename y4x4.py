@@ -95,15 +95,15 @@ def chips(x, y, ranges):
   y += cfg.ch * 1.25
   l4x4 = cfg.l4x4
   for cfg.l4x4 in ranges:
-    _, y = chip(x, y, cfg.size, cfg.ch * 0.5)
+    _, y = chip(x, y, cfg.lchip, cfg.ch * 0.5)
     y += cfg.ch * 2
   cfg.l4x4 = l4x4
   cfg.ch = ch
 
-  return x + cfg.size, y - cfg.ch * 0.75
+  return x + cfg.lchip, y - cfg.ch * 0.75
 
 
 if __name__ == '__main__':
-  chip(0, 0, cfg.size, cfg.ch * 0.5)
+  chip(0, 0, cfg.lchip, cfg.ch * 0.5)
   # chips(0, 0, dxf.arange(150, 167, 1))
   dev.saveas('4x4')

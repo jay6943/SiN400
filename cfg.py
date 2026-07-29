@@ -29,21 +29,20 @@ lext = 500.0
 wtip = 0.3
 lpad = 400.0
 wpad = 10.0
-stap = 1.9
-ltap = 100
-ldcr = 20
 sdcr = 2.0
+rings = [139, 140, 141]
 
 duty = 0.5
 period = 1.4
 
-size = 10000
-wkey = 400
-wbar = 250
+lchip = 10000.0
+lsize = 10000.0
+wkey = 400.0
+wbar = 250.0
 tkey = wkey + wbar
-lkey = size + wkey
-lbar = size + wkey + wbar
-skey = size + wkey + wbar * 2
+lkey = lsize + wkey
+lbar = lsize + wkey + wbar
+skey = lsize + wkey + wbar * 2.0
 area = [[0, 0], [-1, 0], [0, 0], [-1, -1], [0, -1]]
 
 labels = {

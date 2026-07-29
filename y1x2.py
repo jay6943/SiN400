@@ -53,11 +53,11 @@ def chips(x, y):
   y += cfg.ch
   l1x2 = cfg.l1x2
   for cfg.l1x2 in dxf.arange(17, 20, 0.5):
-    _, y = chip(x, y, cfg.size)
+    _, y = chip(x, y, cfg.lchip)
     y += cfg.ch
   cfg.l1x2 = l1x2
 
-  return x + cfg.size, y
+  return x + cfg.lchip, y
 
 
 if __name__ == '__main__':

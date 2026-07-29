@@ -90,7 +90,7 @@ def chips(x, y):
   ch, l4x4 = cfg.ch, cfg.l4x4
   cfg.ch = 250
 
-  xsize = cfg.size
+  xsize = cfg.lchip
   ysize = 3100
 
   chip(x, y, xsize, ysize)
@@ -113,7 +113,7 @@ def chips(x, y):
 
 
 if __name__ == '__main__':
-  chips(0, cfg.size * 0.5)
+  chips(0, cfg.lchip * 0.5)
   dev.filled(0, 0, 1)
   dev.saveas('rx')
   dev.dlayers('rx', 'rect', 'edge')

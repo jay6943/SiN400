@@ -24,13 +24,13 @@ def wafer():
 
 
 def cells(x, y, size, n, title):
-  cs = cfg.size * 0.5
+  cs = cfg.lsize * 0.5
   dy = cs + cfg.wkey
 
   for i in range(n):
     dx = size * (i - n * 0.5) + 200
     key.bars(x + dx - cfg.wkey, y)
-    dxf.srect('rect', x + dx, y + dy, cfg.size, cfg.size)
+    dxf.srect('rect', x + dx, y + dy, cfg.lsize, cfg.lsize)
     dxf.texts('text', x + dx + cs, y + cs, title, 25, 'cc')
 
 
@@ -61,7 +61,7 @@ def cell_position_1x4():
   labels = [labels[:] for _ in range(9)]
   nx, ny = len(labels[0]), len(labels)
 
-  size = cfg.wkey + cfg.size
+  size = cfg.wkey + cfg.lsize
   for j in range(ny):
     y = size * (j - (ny - 1) * 0.5)
     for i in range(nx):
@@ -80,7 +80,7 @@ def cell_position_3x1():
   labels = [labels[:] for _ in range(9)]
   nx, ny = len(labels[0]), len(labels)
 
-  size = cfg.wkey + cfg.size
+  size = cfg.wkey + cfg.lsize
   for j in range(ny):
     y = size * (j - (ny - 1) * 0.5)
     for i in range(nx):

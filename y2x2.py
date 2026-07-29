@@ -58,11 +58,11 @@ def chips(x, y):
   y += cfg.ch * 1.5
   var = cfg.l2x2
   for cfg.l2x2 in [51.5, 52.5, 53.5, 54.5]:
-    _, y = chip(x, y, cfg.size)
+    _, y = chip(x, y, cfg.lchip)
     y += cfg.ch * 2
   cfg.l2x2 = var
 
-  return x + cfg.size, y - cfg.ch * 0.5
+  return x + cfg.lchip, y - cfg.ch * 0.5
 
 if __name__ == '__main__':
   chips(0, 0)

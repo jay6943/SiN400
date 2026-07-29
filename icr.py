@@ -81,7 +81,7 @@ def chip(x, y, xsize, ysize, ytap):
 
 
 def chips(x, y):
-  xsize = cfg.size * 0.5
+  xsize = cfg.lchip * 0.5
   ysize = 1600
   ytap = 475
 
@@ -92,7 +92,7 @@ def chips(x, y):
 
 
 if __name__ == '__main__':
-  chips(0, cfg.size * 0.5)
+  chips(0, cfg.lchip * 0.5)
   dev.filled(0, 0, 1)
   dev.saveas('icr')
   dev.dlayers('icr', 'rect', 'edge')

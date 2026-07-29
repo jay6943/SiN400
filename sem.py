@@ -38,10 +38,10 @@ def tips(x, y, align):
 
 def chips(x, y):
   for i, align in enumerate(['lc', 'rc']):
-    wgs(x + cfg.size * i, y, align)
-    pbses(x + cfg.size * i, y + cfg.ch, align)
-    couplers(x + cfg.size * i, y + cfg.ch * 2, align)
-    tips(x + cfg.size * i, y + cfg.ch * 3, align)
+    wgs(x + cfg.lchip * i, y, align)
+    pbses(x + cfg.lchip * i, y + cfg.ch, align)
+    couplers(x + cfg.lchip * i, y + cfg.ch * 2, align)
+    tips(x + cfg.lchip * i, y + cfg.ch * 3, align)
 
   return x, y + cfg.ch * 9
 

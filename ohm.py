@@ -38,11 +38,11 @@ def chip(x, y, lchip, radius):
 
 
 def chips(x, y):
-  _, y = chip(x, y + cfg.ch, cfg.size, 50)
-  _, y = chip(x, y + cfg.ch * 2, cfg.size, 75)
-  _, y = chip(x, y + cfg.ch * 3, cfg.size, 100)
-  _, y = chip(x, y + cfg.ch * 4, cfg.size, 125)
-  return x + cfg.size, y + cfg.ch * 4
+  _, y = chip(x, y + cfg.ch, cfg.lchip, 50)
+  _, y = chip(x, y + cfg.ch * 2, cfg.lchip, 75)
+  _, y = chip(x, y + cfg.ch * 3, cfg.lchip, 100)
+  _, y = chip(x, y + cfg.ch * 4, cfg.lchip, 125)
+  return x + cfg.lchip, y + cfg.ch * 4
 
 
 if __name__ == '__main__':

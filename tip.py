@@ -26,9 +26,9 @@ def sline(x, y, xend):
 def refer(x, y):
   ch = cfg.ch * 0.5
   title = 'ref'
-  chip(x, y, cfg.size)
+  chip(x, y, cfg.lchip)
   dev.texts(x + cfg.ltip, y - ch, title, 0.3, 'rc')
-  dev.texts(x + cfg.size - cfg.ltip, y - ch, title, 0.3, 'lc')
+  dev.texts(x + cfg.lchip - cfg.ltip, y - ch, title, 0.3, 'lc')
   return x, y
 
 
@@ -52,13 +52,13 @@ def chips(x, y, ranges):
   y += cfg.ch
   wtip = cfg.wtip
   for cfg.wtip in ranges:
-    chip(x, y, cfg.size)
+    chip(x, y, cfg.lchip)
     title = f'TIP-{cfg.wtip:.2f}'
     dev.texts(x + cfg.ltip, y - cfg.ch * 0.5, title, 0.3, 'rc')
-    dev.texts(x + cfg.size - cfg.ltip, y - cfg.ch * 0.5, title, 0.3, 'lc')
+    dev.texts(x + cfg.lchip - cfg.ltip, y - cfg.ch * 0.5, title, 0.3, 'lc')
     y += cfg.ch
   cfg.wtip = wtip
-  return x + cfg.size, y
+  return x + cfg.lchip, y
 
 
 if __name__ == '__main__':
