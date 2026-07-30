@@ -92,4 +92,4 @@ def cell_position_3x1():
   dev.saveas('mapping')
 
 
-if __name__ == '__main__': cell_position_3x1()
+if __name__ == '__main__': cell_position_1x4()
