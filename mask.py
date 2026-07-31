@@ -67,7 +67,7 @@ def chips(region):
 
 
 if __name__ == '__main__':
-  cfg.draft = 'mask'
+  cfg.draft = 'draft'
   filename = f'SiN400_V{cfg.ver}_{cfg.draft}'
   chips([0, 1, 2, 3, 4])
   # dev.savedxf(filename)

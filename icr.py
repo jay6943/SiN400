@@ -39,30 +39,27 @@ def att(x, y, df):
 
 
 def chip(x, y, xsize, ysize, ytap):
+  cfg.ch = 250
   dy = cfg.ch * 2
   ch = cfg.ch * 0.5
   df = dev.euler(cfg.wg, cfg.radius, 90)
 
   x1, y1 = att(x + cfg.ltip, y + ch, df)
   x1, y2 = dev.sline(x + cfg.ltip, y - ch, x1 - x - cfg.ltip)
-  tap(x + 800, y2 - cfg.sdci, ysize - ytap)
+  tap(x + 800, y2 - cfg.sdcr, ysize - ytap)
 
-  x3, y31, y32 = pbs.device('core', x1, y1)
-  x3, y33, y34 = pbs.device('core', x1, y2)
+  x3, y31, y32 = pbs.device('core', x1, y1, 45, cfg.ch)
+  x3, y33, y34 = pbs.device('core', x1, y2, 45, cfg.ch)
 
-  x41, y41 = dev.sbend(x3, y31, 90, y + dy + ch - y31)
-  x42, y42 = tbend(x3, y32, 1, -1, ch - cfg.ch * 0.5)
-  x43, y43 = tbend(x3, y33, 1,  1, ch - cfg.ch * 0.5)
-  x44, y44 = dev.sbend(x3, y34, 90, y - dy - ch - y34)
+  x41, y41 = dev.sbend(x3, y31, 45, y + dy + ch - y31)
+  x42, y42 = dev.sbend(x3, y32, 45, y - dy + ch - y32)
+  x43, y43 = dev.sbend(x3, y33, 45, y + dy - ch - y33)
+  x44, y44 = dev.sbend(x3, y34, 45, y - dy - ch - y34)
 
-  _, y52 = dev.tline(x42, y42, y - dy + ch - y42 + df.dy)
-  _, y53 = dev.tline(x43, y43, y + dy - ch - y43 - df.dy)
-
-  x5, _ = dev.bends(x43, y53, 90, 90, -1,  1)
-  x5, _ = dev.bends(x42, y52, 90, 90, -1, -1)
-
-  dev.sline(x41, y41, x5 - x41)
-  dev.sline(x44, y44, x5 - x44)
+  x5, y51 = dev.sline(x41, y41, 100)
+  x5, y52 = dev.sline(x44, y44, 100)
+  dev.sline(x42, y42, x5 - x42)
+  dev.sline(x43, y43, x5 - x43)
 
   cfg.l4x4 = 578
   x11, y11 = y4x4.device(x5, y + dy, cfg.ch)
@@ -75,13 +72,14 @@ def chip(x, y, xsize, ysize, ytap):
     x13, _ = tip.sline(x11, y11 + i * ch, x + xsize)
     x13, _ = tip.sline(x12, y12 + i * ch, x + xsize)
 
+  cfg.ch = 100
   print(f'RX; {int(x11 - x1)} {int(x13 - x)}')
 
   return x + xsize, y
 
 
 def chips(x, y):
-  xsize = cfg.lchip * 0.5
+  xsize = cfg.lchip
   ysize = 1600
   ytap = 475
 

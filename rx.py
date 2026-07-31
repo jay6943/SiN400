@@ -50,7 +50,7 @@ def chip(x, y, xsize, ysize):
 
   x1, y1 = att(x + cfg.ltip, y + ch, df)
   x1, y2 = dev.sline(x + cfg.ltip, y - ch, x1 - x - cfg.ltip)
-  tap(x + 4000, y1 - cfg.stap, ysize + 150)
+  tap(x + 4000, y1 - cfg.sdcr, ysize + 150)
 
   x3, y31, y32 = pbs.device('core', x1, y1, 45, cfg.ch)
   x3, y33, y34 = pbs.device('core', x1, y2, 45, cfg.ch)
@@ -88,26 +88,21 @@ def chip(x, y, xsize, ysize):
 
 def chips(x, y):
   ch, l4x4 = cfg.ch, cfg.l4x4
-  cfg.ch = 250
+  cfg.ch, ysize = 250, 3100
 
-  xsize = cfg.lchip
-  ysize = 3100
-
-  chip(x, y, xsize, ysize)
-
-  x1, y1, y2 = x + 4500, ysize + 1550, ysize + 875
-  pbs.chip(x, y + y1, 30, cfg.ch * 0.5)
+  chip(x, y, cfg.lchip, ysize)
+  voa.chip(x, y + 4400, 1600, cfg.lchip)
   cfg.l4x4 = l4x4
-  y4x4.chip(x, y + y2, xsize, cfg.ch)
-  dev.texts(x1, y + y2 - 150, f'TE {cfg.l4x4:.0f}', 0.5, 'lc')
-  tip.chip(x, y + ysize + cfg.ch, xsize)
-  tip.chip(x, y - ysize - cfg.ch, xsize)
+  y4x4.chip(x, y + 3700, cfg.lchip, cfg.ch * 0.5)
+  dev.texts(x + 600, y + 3700, f'TE {cfg.l4x4:.0f}', 0.5, 'lc')
+  tip.chip(x, y + ysize + cfg.ch, cfg.lchip)
+  tip.chip(x, y - ysize - cfg.ch, cfg.lchip)
   cfg.l4x4 = l4x4 + 2
-  y4x4.chip(x, y - y2, xsize, cfg.ch)
-  dev.texts(x1, y - y2 - 150, f'TM {cfg.l4x4:.0f}', 0.5, 'lc')
-  pbs.chip(x, y - y1, 30, cfg.ch * 0.5)
+  y4x4.chip(x, y - 3975, cfg.lchip, cfg.ch)
+  dev.texts(x + 600, y - 3975, f'TM {cfg.l4x4:.0f}', 0.5, 'lc')
+  pbs.chip(x, y - 4650, 30, cfg.ch * 0.5)
 
-  dev.marks('metal', x, y - ysize, xsize, ysize * 2)
+  dev.marks('metal', x, y - ysize, cfg.lchip, ysize * 2)
 
   cfg.ch, cfg.l4x4 = ch, l4x4
 

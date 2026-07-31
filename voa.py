@@ -52,7 +52,7 @@ def device2x2(x, y):
 def chip(x, y, dx, lchip):
   x1 = x + dx
   x2, _ = device(x1, y)
-  title = f'VOA-{cfg.lpad}-{cfg.wpad}'
+  title = f'VOA-{cfg.lpad:.0f}-{cfg.wpad:.0f}'
   tip.texts(x1, y, x, title)
   tip.texts(x2, y, x + lchip, title)
   dev.texts((x2 + x1) * 0.5, y, title, 0.4, 'cct')

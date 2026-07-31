@@ -79,12 +79,12 @@ def chip(x, y, lchip, ych):
   tip.sline(x2, y - cfg.ch * 0.5, x)
   dev.texts(x + cfg.lext, y, title, 0.3, 'rc')
 
-  for i in [3, 1, -1, -3]:
-    title = f'{cfg.l4x4:.0f}-{2+(i+1)*0.5:.0f}'
-    x4, y4 = x + lchip - cfg.lext, y + ych * 0.5 * i
+  for i, ich in enumerate([3, 1, -1, -3]):
+    title = f'{cfg.l4x4:.0f}-{4-i:.0f}'
+    x4, y4 = x + lchip - cfg.lext, y + ych * 0.5 * ich
     tip.sline(x3, y4, x + lchip)
     dev.texts(x4, y4 - ych * 0.5, title, 0.3, 'lc')
-  print(f'{title}, {x3 - x2:.0f}')
+  print(f'4x4 MMI, {cfg.l4x4:.0f} um')
 
   return x + lchip, y
 
