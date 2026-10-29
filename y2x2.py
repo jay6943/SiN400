@@ -21,8 +21,7 @@ def device(x, y):
 
 
 def chip(x, y, lchip):
-  ch, angle, dy = cfg.ch * 0.25, 5, 5
-  df = dev.euler(cfg.wg, cfg.radius, angle)
+  ch, angle = cfg.ch * 0.25, 20
 
   dh = ch * 2 - cfg.s2x2
 
@@ -30,18 +29,11 @@ def chip(x, y, lchip):
   y2 = y - ch * 2
   
   idev = len(dat.points)
-  x1, y3 = dev.sbend(x, y1, 15, -dh)
-  x1, y4 = dev.sbend(x, y2, 15,  dh)
-  for i in range(1):
-    x1, y3, y4 = device(x1, y)
-    if (i > 1) and (i < 9):
-      x2, y3 = dxf.sbend('core', df, x1, y3, dy)
-      x2, y4 = dxf.sbend('core', df, x1, y4, -dy)
-      x1, y3 = dxf.sbend('core', df, x2, y3, -dy)
-      x1, y4 = dxf.sbend('core', df, x2, y4, dy)
-      dxf.srect('edge', x1, y, (x2 - x1) * 2, cfg.eg)
-  x3, y1 = dev.sbend(x1, y3, 15,  dh)
-  x3, y2 = dev.sbend(x1, y4, 15, -dh)
+  x1, y3 = dev.sbend(x, y1, angle, -dh)
+  x1, y4 = dev.sbend(x, y2, angle,  dh)
+  x1, y3, y4 = device(x1, y)
+  x3, y1 = dev.sbend(x1, y3, angle,  dh)
+  x3, y2 = dev.sbend(x1, y4, angle, -dh)
   x5, x6 = dxf.center(idev, x, x3, lchip)
 
   title = f'2x2-{cfg.l2x2:.1f}'
