@@ -1,7 +1,7 @@
 import cfg
 import dxf
 import dev
-import cdr
+import dc
 import tip
 
 
@@ -51,7 +51,7 @@ def double_rings(x, y):
   dy = 300
   df = dev.euler(cfg.wg, cfg.radius, 90)
 
-  x1, y1 = cdr.coupler(x, y, 100, 50, 12)
+  x1, y1 = dc.coupler(x, y)
   x11, y11 = rings(x1, y1, cfg.rings[0], 1)
   x12, y12 = rings(x1 - (x11 - x1), y11, cfg.rings[1], 1)
   x13, y13 = dev.sline(x12, y12, x11 - x12)
@@ -80,7 +80,7 @@ def double_rings(x, y):
 def chip(x, y):
   tip.chip(x, y, cfg.lchip)
   x11, y11 = x + 2500, y + cfg.ch * 0.5
-  x12, y12 = cdr.coupler(x11, y11, 100, 50, 12)
+  x12, y12 = dc.coupler(x11, y11)
   x21, y21 = x11, y11 + cfg.ch
   x22, y22 = double_rings(x21, y21)
   x31, y31 = x11 - 800, y21 + cfg.ch * 0.5

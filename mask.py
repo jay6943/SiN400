@@ -6,7 +6,7 @@ import pbs
 import tip
 import tap
 import fgc
-import cdr
+import dc
 import y4x4
 import ring
 import rx
@@ -30,7 +30,7 @@ def optical_hybrid(xpos, ypos):
   _, y = y4x4.chips(x, y, dxf.arange(152, 164, 1))
   _, y = pbs.polarizer(x, y, -1)
   _, y = tip.refer(x, y)
-  _, y = cdr.chips(x, y, dxf.arange(1.5, 2.7, 0.05))
+  _, y = dc.chips(x, y, dxf.arange(1.5, 2.7, 0.05))
 
 
 def waveguide(xpos, ypos):
