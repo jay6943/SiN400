@@ -2,7 +2,7 @@ import cfg
 import dxf
 import gds
 import dev
-import fgc
+import gc
 
 
 def bends(path):
@@ -40,7 +40,7 @@ def dc(path):
 
 
 def grating_coupler(path):
-  fgc.grating('core', 0, 0, 1, 0)
+  gc.grating('core', 0, 0, 1, 0)
   dxf.srect('core', -10, 0, 10, cfg.wg)
   gds.savelayer(f'{path}/grating_{cfg.period}')
 

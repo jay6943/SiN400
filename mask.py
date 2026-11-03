@@ -5,7 +5,7 @@ import key
 import pbs
 import tip
 import tap
-import fgc
+import gc
 import dc
 import y4x4
 import ring
@@ -40,7 +40,7 @@ def waveguide(xpos, ypos):
   _, y = pbs.polarizer(x, y + cfg.ch, 1)
   _, y = tip.chips(x, y, dxf.arange(0.2, 0.4, 0.01))
   _, y = tap.chips(x, y, dxf.arange(1.2, 2.6, 0.1))
-  _, y = fgc.chips(x, y)
+  _, y = gc.chips(x, y)
   _, y = pbs.polarizer(x, y, -1)
   _, y = tip.refer(x, y)
 
