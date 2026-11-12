@@ -3,6 +3,8 @@ import os
 ver = '1.0'
 path = f'../../mask/SiN400-{ver}'
 if not os.path.isdir(path): os.mkdir(path)
+libs = f'../../mask/libs'
+if not os.path.isdir(libs): os.mkdir(libs)
 draft = 'draft'
 
 wg = 1.0
