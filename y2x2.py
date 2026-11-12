@@ -49,7 +49,7 @@ def chip(x, y, lchip):
 def chips(x, y):
   y += cfg.ch * 1.5
   var = cfg.l2x2
-  for cfg.l2x2 in [51.5, 52.5, 53.5, 54.5]:
+  for cfg.l2x2 in dxf.arange(51.5, 54.5, 1):
     _, y = chip(x, y, cfg.lchip)
     y += cfg.ch * 2
   cfg.l2x2 = var
