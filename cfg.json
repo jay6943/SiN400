@@ -45,6 +45,6 @@
         "period": 1.0
     },
     "directional coupler spacing": 2.0,
-    "raius step": 100.0,
+    "delay raius step": 100.0,
     "tap spacing": 3.6
 }
