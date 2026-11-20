@@ -7,7 +7,7 @@ import numpy as np
 
 
 def device(x, y, ch):
-  ych = cfg.ch * 0.5
+  ych = ch * 0.5
 
   y1 = y + ych
   y2 = y - ych
@@ -75,8 +75,8 @@ def chip(x, y, lchip, ych):
   x2, x3 = dxf.center(idev, x, x1, lchip)
 
   title = f'4x4-{cfg.l4x4:.0f}'
-  tip.sline(x2, y + cfg.ch * 0.5, x)
-  tip.sline(x2, y - cfg.ch * 0.5, x)
+  tip.sline(x2, y + ych * 0.5, x)
+  tip.sline(x2, y - ych * 0.5, x)
   dev.texts(x + cfg.lext, y, title, 0.3, 'rc')
 
   for i, ich in enumerate([3, 1, -1, -3]):
@@ -104,6 +104,6 @@ def chips(x, y, ranges):
 
 
 if __name__ == '__main__':
-  chip(0, 0, cfg.lchip, cfg.ch * 0.5)
+  chip(0, 0, cfg.lchip, 250)
   # chips(0, 0, dxf.arange(150, 167, 1))
-  dev.saveas('4x4')
+  dev.saveas(f'4x4_{cfg.draft}')

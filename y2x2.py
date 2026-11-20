@@ -58,4 +58,4 @@ def chips(x, y):
 
 if __name__ == '__main__':
   chips(0, 0)
-  dev.saveas('2x2')
+  dev.saveas(f'2x2_{cfg.draft}')
