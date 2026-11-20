@@ -23,7 +23,7 @@
     },
     "PBS": {
         "length": 65.0,
-        "narrower": 1.2,
+        "refer": 1.2,
         "wider": 1.85,
         "spacing": 4.4
     },
