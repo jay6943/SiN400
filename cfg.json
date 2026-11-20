@@ -24,7 +24,8 @@
     "PBS": {
         "length": 65.0,
         "narrower": 1.2,
-        "wider": 1.85
+        "wider": 1.85,
+        "spacing": 4.4
     },
     "taper": {
         "length": 5.0,
@@ -44,6 +45,6 @@
         "period": 1.0
     },
     "directional coupler spacing": 2.0,
-    "delay line step": 100.0,
-    "chip length": 10000.0
+    "raius step": 100.0,
+    "tap spacing": 3.6
 }
