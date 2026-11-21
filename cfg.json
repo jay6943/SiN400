@@ -6,9 +6,9 @@
 
     "waveguide width": 1.0,
     "waveguide etched width": 40.0,
-    "channel spacing": 100.0,
     "radius": 150.0,
-    "tilted angle": 6.0,
+    "channel spacing": 100.0,
+    "channel bending angle": 20.0,
     "directional coupler spacing": 2.0,
     "delay radius step": 100.0,
     "tap spacing": 3.6,

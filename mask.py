@@ -5,8 +5,8 @@ import key
 import pbs
 import tip
 import tap
-import fgc
-import dc
+import grc
+import sdc
 import y4x4
 import ring
 import rx
@@ -17,7 +17,7 @@ def polarization_beam_splitter(xpos, ypos):
   x, y = dev.filled(x, y)
   _, y = tip.refer(x, y + cfg.ch * 2)
   _, y = pbs.polarizer(x, y + cfg.ch, 1)
-  _, y = pbs.chips(x, y, dxf.ranges(12, 100, 2))
+  _, y = pbs.chips(x, y, 12, 100, 2)
   _, y = pbs.polarizer(x, y + cfg.ch, -1)
   _, y = tip.refer(x, y)
 
@@ -27,10 +27,10 @@ def optical_hybrid(xpos, ypos):
   x, y = dev.filled(x, y)
   _, y = tip.refer(x, y + cfg.ch * 2)
   _, y = pbs.polarizer(x, y + cfg.ch, 1)
-  _, y = y4x4.chips(x, y, dxf.ranges(152, 164, 1))
+  _, y = y4x4.chips(x, y, 152, 164, 1)
   _, y = pbs.polarizer(x, y, -1)
   _, y = tip.refer(x, y)
-  _, y = dc.chips(x, y, dxf.ranges(1.5, 2.1, 0.05))
+  _, y = sdc.chips(x, y, 1.5, 2.1, 0.05)
 
 
 def waveguide(xpos, ypos):
@@ -38,9 +38,9 @@ def waveguide(xpos, ypos):
   x, y = dev.filled(x, y)
   _, y = tip.refer(x, y + cfg.ch * 2)
   _, y = pbs.polarizer(x, y + cfg.ch, 1)
-  _, y = tip.chips(x, y, dxf.ranges(0.2, 0.4, 0.01))
-  _, y = tap.chips(x, y, dxf.ranges(1.2, 2.6, 0.1))
-  _, y = fgc.chips(x, y)
+  _, y = tip.chips(x, y, 0.2, 0.4, 0.01)
+  _, y = tap.chips(x, y, 1.2, 2.6, 0.1)
+  _, y = grc.chips(x, y, 0.48, 0.52, 0.01)
   _, y = pbs.polarizer(x, y, -1)
   _, y = tip.refer(x, y)
 
@@ -48,7 +48,7 @@ def waveguide(xpos, ypos):
 def rings(xpos, ypos):
   x, y = key.frame(xpos, ypos, 1)
   x, y = dev.filled(x, y)
-  _, y = ring.chips(x, y, dxf.ranges(1.3, 2.2, 0.2))
+  _, y = ring.chips(x, y, 1.3, 1.55, 0.05)
 
 
 def icr(xpos, ypos):
