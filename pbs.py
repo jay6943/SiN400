@@ -14,8 +14,8 @@ def polarizer(x, y, sign):
     x2, y2 = dev.sbend(x1, y1, angle,  sign * cfg.ch)
     x1, y1 = dev.sbend(x2, y2, angle, -sign * cfg.ch)
   x3, x4 = dxf.center(idev, x, x1, cfg.lchip)
-  tip.texts(x3, y, x, '100R')
-  tip.texts(x4, y, x + cfg.lchip, 'Polarizer')
+  tip.sline(x3, y, x, '100R')
+  tip.sline(x4, y, x + cfg.lchip, 'Polarizer')
   cfg.radius = radius
   return x, y + cfg.ch
 
@@ -88,9 +88,9 @@ def chip(x, y, angle, ch):
   x5, x6 = dxf.center(idev, x, x1, cfg.lchip)
 
   title = f'PBS-{cfg.lpbs:.0f}'
-  tip.texts(x5, y, x, title)
-  tip.texts(x6, y + cfg.ch * 0.5, x + cfg.lchip, title)
-  tip.sline(x6, y - cfg.ch * 0.5, x + cfg.lchip)
+  tip.sline(x5, y, x, title)
+  tip.sline(x6, y + cfg.ch * 0.5, x + cfg.lchip, title)
+  tip.sline(x6, y - cfg.ch * 0.5, x + cfg.lchip, '')
   print(title)
 
   return x + cfg.lchip, y

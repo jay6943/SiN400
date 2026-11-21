@@ -36,13 +36,13 @@ def single_ring(x, y, radius):
 def single_rings(x, y, isdcr):
   m = 10
   sdcr = cfg.sdcr
-  var = dxf.arange(isdcr, isdcr + 0.19, 0.02)
+  var = dxf.ranges(isdcr, isdcr + 0.19, 0.02)
   for i, cfg.sdcr in enumerate(var[::-1]):
     x1, y1 = x + 700 * i + 1200, y + cfg.ch * (m - i)
     x2, y2 = single_ring(x1, y1, 132)
     title = f'{cfg.sdcr}'
-    tip.texts(x1, y1, x, title)
-    tip.texts(x2, y2, x + cfg.lchip, title)
+    tip.sline(x1, y1, x, title)
+    tip.sline(x2, y2, x + cfg.lchip, title)
   cfg.sdcr = sdcr
   return x, y + (m + 4) * cfg.ch
 
@@ -88,19 +88,19 @@ def chip(x, y):
   x41, y41 = x31 - 800, y31 + cfg.ch * 0.5
   x42, y42 = single_ring(x41, y41, cfg.rings[0])
 
-  tip.sline(x11, y11, x)
-  tip.sline(x12, y11, x + cfg.lchip)
-  tip.sline(x11, y12, x)
-  tip.sline(x12, y12, x + cfg.lchip)
+  tip.sline(x11, y11, x, '')
+  tip.sline(x12, y11, x + cfg.lchip, '')
+  tip.sline(x11, y12, x, '')
+  tip.sline(x12, y12, x + cfg.lchip, '')
   title = f'SPACING-{cfg.sdcr:.1f}'
-  tip.sline(x21, y21, x)
-  tip.sline(x22, y21, x + cfg.lchip)
-  tip.texts(x22, y22, x + cfg.lchip, title)
+  tip.sline(x21, y21, x, '')
+  tip.sline(x22, y21, x + cfg.lchip, '')
+  tip.sline(x22, y22, x + cfg.lchip, title)
   print(title)
-  tip.sline(x31, y31, x)
-  tip.sline(x32, y32, x + cfg.lchip)
-  tip.sline(x41, y41, x)
-  tip.sline(x42, y42, x + cfg.lchip)
+  tip.sline(x31, y31, x, '')
+  tip.sline(x32, y32, x + cfg.lchip, '')
+  tip.sline(x41, y41, x, '')
+  tip.sline(x42, y42, x + cfg.lchip, '')
 
   return x + cfg.lchip, y
 

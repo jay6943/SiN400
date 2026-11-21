@@ -43,7 +43,7 @@ def grating(layer, x, y, sign):
   w = round(cfg.wg, 3)
   d = round(cfg.duty * 100, 3)
   p = round(cfg.period, 3)
-  fp = f'{dat.libs}/coupler_{w}_{p}_{d:.0f}.npy'
+  fp = f'{cfg.libs}/coupler_{w}_{p}_{d:.0f}.npy'
   if not os.path.isfile(fp): device(fp)
   df = np.load(fp, allow_pickle=True).item()
   dxf.appends(layer, df['guide'] * [sign, 1] + [x, y])
@@ -59,13 +59,13 @@ def chip(x, y, sign):
 def chips(x, y):
   duty = cfg.duty
   period = cfg.period
-  for cfg.duty in dxf.arange(0.48, 0.52, 0.01):
+  for cfg.duty in dxf.ranges(0.48, 0.52, 0.01):
     y += cfg.ch
     tip.chip(x, y, cfg.lchip)
-    for cfg.period in dxf.arange(1.0, 1.6, 0.1):
+    for cfg.period in dxf.ranges(1.0, 1.6, 0.1):
       title = f'{cfg.period}-{cfg.duty*100:.0f}'
       x1, y1 = x + cfg.lchip - cfg.ltip, y + cfg.ch
-      tip.sline(x1, y1, x)
+      tip.sline(x1, y1, x, '')
       x2, y2 = chip(x1, y1, 1)
       dev.texts(x2 + 10, y2, title, 0.4, 'lc')
       # dx = cfg.lchip * 0.5

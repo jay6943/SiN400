@@ -18,9 +18,9 @@ def chip(x, y, lchip):
   x2, x3 = dxf.center(idev, x, x1, lchip)
 
   title = f'TAP-{cfg.sdcr:.1f}'
-  tip.texts(x2, y, x, title)
-  tip.texts(x3, y, x + lchip, title)
-  tip.sline(x3, y + cfg.ch, x + lchip)
+  tip.sline(x2, y, x, title)
+  tip.sline(x3, y, x + lchip, title)
+  tip.sline(x3, y + cfg.ch, x + lchip, '')
   print(title)
 
   return x, y

@@ -66,11 +66,11 @@ def chip(x, y, xsize, ysize, ytap):
   cfg.l4x4 = 584
   x12, y12 = y4x4.device(x5, y - dy, cfg.ch)
 
-  tip.sline(x + cfg.ltip, y1, x)
-  tip.sline(x + cfg.ltip, y2, x)
+  tip.sline(x + cfg.ltip, y1, x, '')
+  tip.sline(x + cfg.ltip, y2, x, '')
   for i in [-3, -1, 1, 3]:
-    x13, _ = tip.sline(x11, y11 + i * ch, x + xsize)
-    x13, _ = tip.sline(x12, y12 + i * ch, x + xsize)
+    x13, _ = tip.sline(x11, y11 + i * ch, x + xsize, '')
+    x13, _ = tip.sline(x12, y12 + i * ch, x + xsize, '')
 
   cfg.ch = 100
   print(f'RX; {int(x11 - x1)} {int(x13 - x)}')

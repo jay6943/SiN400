@@ -30,8 +30,8 @@ def chip(x, y, lchip, radius):
   x5, x6 = dxf.center(idev, x, x2, lchip)
 
   title = f'{radius}R'
-  tip.texts(x5, y, x, title)
-  tip.texts(x6, y2, x + lchip, title)
+  tip.sline(x5, y, x, title)
+  tip.sline(x6, y2, x + lchip, title)
   print(f'{title}, {x5 - x:.0f}')
 
   return x + lchip, y

@@ -14,7 +14,7 @@ def tap(x, y, dy):
   x1, y1 = dev.bends(x, y, 90, 0, 1, -1)
   x2, y2 = dev.tline(x1, y1, df.dy - dy + cfg.ltip)
   idev = len(dat.points)
-  x3, y3 = tip.sline(x2, y2, x2)
+  x3, y3 = tip.sline(x2, y2, x2, '')
   dxf.move(idev, x2, y2, x3, y3, 0, 0, 90)
 
 
@@ -74,11 +74,11 @@ def chip(x, y, xsize, ysize):
   cfg.l4x4 = l4x4 + 2
   x12, y12 = y4x4.device(x5, y - dy, cfg.ch)
 
-  tip.sline(x + cfg.ltip, y1, x)
-  tip.sline(x + cfg.ltip, y2, x)
+  tip.sline(x + cfg.ltip, y1, x, '')
+  tip.sline(x + cfg.ltip, y2, x, '')
   for i in [-3, -1, 1, 3]:
-    x13, _ = tip.sline(x11, y11 + i * ch, x + xsize)
-    x13, _ = tip.sline(x12, y12 + i * ch, x + xsize)
+    x13, _ = tip.sline(x11, y11 + i * ch, x + xsize, '')
+    x13, _ = tip.sline(x12, y12 + i * ch, x + xsize, '')
 
   cfg.l4x4 = l4x4
   print(f'RX; {int(x11 - x1)} {int(x13 - x)}')

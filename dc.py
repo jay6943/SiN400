@@ -29,11 +29,11 @@ def chip(x, y, lchip):
   x3, _ = dev.sbend(x2, y4, angle, -dy)
   x5, x6 = dxf.center(idev, x, x3, lchip)
 
-  title = f'DC-{cfg.sdcr:.1f}'
-  tip.texts(x5, y1, x, title)
-  tip.sline(x5, y2, x)
-  tip.texts(x6, y1, x + lchip, title)
-  tip.sline(x6, y2, x + lchip)
+  title = f'DC-{cfg.sdcr:.2f}'
+  tip.sline(x5, y1, x, title)
+  tip.sline(x5, y2, x, '')
+  tip.sline(x6, y1, x + lchip, title)
+  tip.sline(x6, y2, x + lchip, '')
   print(f'{title}, chip length ~ {x6 - x5:.0f} um')
 
   return x + lchip, y

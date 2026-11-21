@@ -75,14 +75,14 @@ def chip(x, y, lchip, ych):
   x2, x3 = dxf.center(idev, x, x1, lchip)
 
   title = f'4x4-{cfg.l4x4:.0f}'
-  tip.sline(x2, y + ych * 0.5, x)
-  tip.sline(x2, y - ych * 0.5, x)
+  tip.sline(x2, y + ych * 0.5, x, '')
+  tip.sline(x2, y - ych * 0.5, x, '')
   dev.texts(x + cfg.lext, y, title, 0.3, 'rc')
 
   for i, ich in enumerate([3, 1, -1, -3]):
     title = f'{cfg.l4x4:.0f}-{4-i:.0f}'
     x4, y4 = x + lchip - cfg.lext, y + ych * 0.5 * ich
-    tip.sline(x3, y4, x + lchip)
+    tip.sline(x3, y4, x + lchip, '')
     dev.texts(x4, y4 - ych * 0.5, title, 0.3, 'lc')
   print(f'4x4 MMI, {cfg.l4x4:.0f} um')
 
